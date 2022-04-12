@@ -67,6 +67,8 @@ packer.startup({
         require('Comment').setup()
       end
     }
+    -- spaceless
+    use 'lewis6991/spaceless.nvim'
     -- gitsigns
     use 'lewis6991/gitsigns.nvim'
     -- telescope
