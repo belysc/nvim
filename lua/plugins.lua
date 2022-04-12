@@ -77,6 +77,8 @@ packer.startup({
         'nvim-telescope/telescope-fzf-native.nvim',
       }
     }
+    -- nvim-bqf
+    use {'kevinhwang91/nvim-bqf'}
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     -- lspconfig
