@@ -8,15 +8,7 @@ lua require('plugins')
 lua require('keybindings')
 
 " 皮肤设置
-set background=dark
-" colorscheme gruvbox
-" colorscheme tokyonight
-" colorscheme onedark
-colorscheme monokai
-" colorscheme monokai_pro
-" colorscheme monokai_soda
-" colorscheme monokai_ristretto
-" colorscheme NeoSolarized
+lua require("colorscheme")
 
 " 插件配置
 lua require('plugin-config/nvim-tree')

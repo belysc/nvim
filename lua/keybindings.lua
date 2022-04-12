@@ -1,4 +1,4 @@
--- leader key 为空
+-- setting leader key to ","
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
