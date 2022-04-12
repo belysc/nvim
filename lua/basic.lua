@@ -1,3 +1,5 @@
+-- set history
+vim.opt.history = 2000
 -- utf8
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = "utf-8"
@@ -81,3 +83,29 @@ vim.o.showtabline = 2
 vim.o.showmode = false
 -- 配置剪切板
 vim.opt.clipboard = "unnamedplus"
+-- 代码折叠
+vim.opt.foldenable = true
+-- 折叠方法
+-- manual    手工折叠
+-- indent    使用缩进表示折叠
+-- expr      使用表达式定义折叠
+-- syntax    使用语法定义折叠
+-- diff      对没有更改的文本进行折叠
+-- marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
+vim.opt.foldmethod="indent"
+vim.opt.foldlevel=99
+-- Set clipboard to use win32yank
+vim.cmd[[
+let g:clipboard = {
+      \   'name': 'win32yank-wsl',
+      \   'copy': {
+      \      '+': 'win32yank -i --crlf',
+      \      '*': 'win32yank -i --crlf',
+      \    },
+      \   'paste': {
+      \      '+': 'win32yank -o --lf',
+      \      '*': 'win32yank -o --lf',
+      \   },
+      \   'cache_enabled': 0,
+      \ }
+]]
