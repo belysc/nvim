@@ -26,8 +26,13 @@ end
 
 packer.startup({
   function(use)
+    -- impatient.nvim has to be loaded before anything else,
+    -- it's also required in init.lua
+    use('lewis6991/impatient.nvim')
+
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+
     -- color scheme
     use {
       "ellisonleao/gruvbox.nvim",
@@ -37,6 +42,7 @@ packer.startup({
     use 'ful1e5/onedark.nvim'
     use 'tanvirtin/monokai.nvim'
     use 'overcache/NeoSolarized'
+
     -- nvim-tree
     use {
       'kyazdani42/nvim-tree.lua',
@@ -122,6 +128,20 @@ packer.startup({
     -- },
   }
 })
+
+-- 自动插件的具体配置
+require('plugin-config/nvim-tree')
+require('plugin-config/bufferline')
+require('plugin-config/lualine')
+require('plugin-config/comment')
+require('plugin-config/spaceless')
+require('plugin-config/symbol-outline')
+require('plugin-config/nvim-treesitter')
+require('plugin-config/telescope')
+require('plugin-config/nvim-cmp')
+require('plugin-config/nvim-autopairs')
+require('plugin-config/gitsigns')
+
 
 -- 每次保存 plugins.lua 自动安装插件
 pcall(vim.cmd, [[
