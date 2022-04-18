@@ -1,7 +1,6 @@
 -- 皮肤设置
 vim.cmd [[
 set background=dark
-" colorscheme gruvbox
 " colorscheme tokyonight
 " colorscheme onedark
 colorscheme monokai

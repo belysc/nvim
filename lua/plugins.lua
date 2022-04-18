@@ -31,75 +31,51 @@ packer.startup({
     use('lewis6991/impatient.nvim')
 
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+    use('wbthomason/packer.nvim')
+
+    -- Dependency required by other plugins
+    use('nvim-lua/plenary.nvim')
+    use('kyazdani42/nvim-web-devicons')
 
     -- Colorscheme
-    use {
-      "ellisonleao/gruvbox.nvim",
-      requires = {"rktjmp/lush.nvim"}
-    }
-    use 'folke/tokyonight.nvim'
-    use 'ful1e5/onedark.nvim'
-    use 'tanvirtin/monokai.nvim'
-    use 'overcache/NeoSolarized'
+    use('folke/tokyonight.nvim')
+    use('ful1e5/onedark.nvim')
+    use('tanvirtin/monokai.nvim')
+    use('overcache/NeoSolarized')
 
     -- UI
-    use {
-      'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons'
-    }
-    use {
-      'akinsho/bufferline.nvim',
-      requires = 'kyazdani42/nvim-web-devicons'
-    }
-    use {
-      'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
-    use "simrat39/symbols-outline.nvim"
-    use "numToStr/FTerm.nvim"
-    use {'kevinhwang91/nvim-bqf'}
-    use(require('plugin-config.indent-line'))
+    use(require('plugin-config.nvim-tree'))
+    use(require('plugin-config.bufferline'))
+    use(require('plugin-config.lualine'))
+    use(require('plugin-config.symbol-outline'))
+    use("numToStr/FTerm.nvim")
+    use('kevinhwang91/nvim-bqf')
+    -- use(require('plugin-config.indent-line'))
 
     -- Edit
-    use "deris/vim-shot-f"
-    use "windwp/nvim-autopairs"
-    use {
-      'numToStr/Comment.nvim',
-      config = function()
-        require('Comment').setup()
-      end
-    }
-    use 'lewis6991/spaceless.nvim'
-    use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
-    use 'hrsh7th/vim-vsnip'
-    use 'rafamadriz/friendly-snippets'
+    use("deris/vim-shot-f")
+    use(require('plugin-config.nvim-autopairs'))
+    use(require('plugin-config.comment'))
+    use(require('plugin-config.spaceless'))
+    use('hrsh7th/cmp-vsnip')
+    use('hrsh7th/vim-vsnip')
+    use('rafamadriz/friendly-snippets')
 
     -- Git
-    use 'lewis6991/gitsigns.nvim'
+    use(require('plugin-config.gitsigns'))
 
     -- Fuzzy Search
-    use {
-      'nvim-telescope/telescope.nvim',
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope-fzf-native.nvim',
-      }
-    }
+    use(require('plugin-config.telescope'))
+
     -- treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use "p00f/nvim-ts-rainbow"
+    use(require('plugin-config.nvim-treesitter'))
+    use("p00f/nvim-ts-rainbow")
 
     -- LSP
     use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
 
     -- Autocomplete
-    use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
-    use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
-    use 'hrsh7th/cmp-path'     -- { name = 'path' }
-    use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
-    use 'hrsh7th/nvim-cmp'
-    use 'onsails/lspkind-nvim'
+    use(require('plugin-config.nvim-cmp'))
 
     -------------------------------------------------------
 
@@ -125,20 +101,6 @@ packer.startup({
     -- },
   }
 })
-
--- 自动插件的具体配置
-require('plugin-config/nvim-tree')
-require('plugin-config/bufferline')
-require('plugin-config/lualine')
-require('plugin-config/comment')
-require('plugin-config/spaceless')
-require('plugin-config/symbol-outline')
-require('plugin-config/nvim-treesitter')
-require('plugin-config/telescope')
-require('plugin-config/nvim-cmp')
-require('plugin-config/nvim-autopairs')
-require('plugin-config/gitsigns')
-
 
 -- 每次保存 plugins.lua 自动安装插件
 pcall(vim.cmd, [[
