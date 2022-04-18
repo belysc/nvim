@@ -1,7 +1,7 @@
 require'nvim-treesitter.configs'.setup {
   -- 安装 language parser
   -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = {"vim", "lua", "typescript", "python", "go", "bash", "yaml", "make"},
+  ensure_installed = {"vim", "lua", "typescript", "python", "go", "gomod", "gowork", "bash", "yaml", "make"},
   -- 启用代码高亮功能
   highlight = {
     enable = true,
@@ -31,8 +31,8 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 -- 开启 Folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.wo.foldmethod = 'expr'
+-- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 -- 默认不要折叠
 -- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
-vim.wo.foldlevel = 99
+-- vim.wo.foldlevel = 99

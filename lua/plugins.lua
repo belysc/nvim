@@ -33,7 +33,7 @@ packer.startup({
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    -- color scheme
+    -- Colorscheme
     use {
       "ellisonleao/gruvbox.nvim",
       requires = {"rktjmp/lush.nvim"}
@@ -43,41 +43,41 @@ packer.startup({
     use 'tanvirtin/monokai.nvim'
     use 'overcache/NeoSolarized'
 
-    -- nvim-tree
+    -- UI
     use {
       'kyazdani42/nvim-tree.lua',
       requires = 'kyazdani42/nvim-web-devicons'
     }
-    -- bufferline
     use {
       'akinsho/bufferline.nvim',
       requires = 'kyazdani42/nvim-web-devicons'
     }
-    -- lualine
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    -- symobl outline
     use "simrat39/symbols-outline.nvim"
-    -- float terminal
     use "numToStr/FTerm.nvim"
-    -- short-f
+    use {'kevinhwang91/nvim-bqf'}
+
+    -- Edit
     use "deris/vim-shot-f"
-    -- autopairs
     use "windwp/nvim-autopairs"
-    -- comments
     use {
       'numToStr/Comment.nvim',
       config = function()
         require('Comment').setup()
       end
     }
-    -- spaceless
     use 'lewis6991/spaceless.nvim'
-    -- gitsigns
+    use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
+    use 'hrsh7th/vim-vsnip'
+    use 'rafamadriz/friendly-snippets'
+
+    -- Git
     use 'lewis6991/gitsigns.nvim'
-    -- telescope
+
+    -- Fuzzy Search
     use {
       'nvim-telescope/telescope.nvim',
       requires = {
@@ -85,23 +85,19 @@ packer.startup({
         'nvim-telescope/telescope-fzf-native.nvim',
       }
     }
-    -- nvim-bqf
-    use {'kevinhwang91/nvim-bqf'}
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    -- lspconfig
+    use "p00f/nvim-ts-rainbow"
+
+    -- LSP
     use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
-    -- nvim-cmp
+
+    -- Autocomplete
     use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
     use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
     use 'hrsh7th/cmp-path'     -- { name = 'path' }
     use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
     use 'hrsh7th/nvim-cmp'
-    -- vsnip
-    use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
-    use 'hrsh7th/vim-vsnip'
-    use 'rafamadriz/friendly-snippets'
-    -- lspkind
     use 'onsails/lspkind-nvim'
 
     -------------------------------------------------------
