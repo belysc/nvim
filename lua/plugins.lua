@@ -59,6 +59,7 @@ packer.startup({
     use "simrat39/symbols-outline.nvim"
     use "numToStr/FTerm.nvim"
     use {'kevinhwang91/nvim-bqf'}
+    use(require('plugin-config.indent-line'))
 
     -- Edit
     use "deris/vim-shot-f"
