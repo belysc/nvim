@@ -4,8 +4,8 @@ local lsp_installer = require "nvim-lsp-installer"
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 -- { key: 语言 value: 配置文件 }
 local servers = {
-  sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
-  gopls = require "lsp.gopls", -- /lua/lsp/gopls.lua
+  sumneko_lua = require("lsp.lua"), -- /lua/lsp/lua.lua
+  gopls = require("lsp.gopls"), -- /lua/lsp/gopls.lua
   pylsp = require("lsp.pylsp"), -- /lua/lsp/pylsp.lua
   bashls = require("lsp.bashls"), -- /lua/lsp/bashls.lua
   vimls = require("lsp.vimls"), -- /lua/lsp/vimls.lua

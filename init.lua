@@ -14,7 +14,7 @@ require('plugins')
 require('keybindings')
 
 -- lsp 配置
-require('lsp/setup')
+require('lsp')
 
 -- autocmd
 require("auto-command")
