@@ -69,7 +69,7 @@ packer.startup({
 
     -- treesitter
     use(require('plugin-config.nvim-treesitter'))
-    use("p00f/nvim-ts-rainbow")
+    -- use("p00f/nvim-ts-rainbow")
 
     -- LSP
     use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
