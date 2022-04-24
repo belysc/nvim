@@ -60,6 +60,7 @@ packer.startup({
     use('hrsh7th/cmp-vsnip')
     use('hrsh7th/vim-vsnip')
     use('rafamadriz/friendly-snippets')
+    use('machakann/vim-sandwich')
 
     -- Git
     use(require('plugin-config.gitsigns'))
