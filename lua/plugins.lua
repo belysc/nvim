@@ -42,6 +42,7 @@ packer.startup({
     use('ful1e5/onedark.nvim')
     use('tanvirtin/monokai.nvim')
     use('overcache/NeoSolarized')
+    use('sainnhe/everforest')
 
     -- UI
     use(require('plugin-config.nvim-tree'))

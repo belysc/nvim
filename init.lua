@@ -22,4 +22,3 @@ require("auto-command")
 -- 皮肤设置
 require("colorscheme")
 
-
