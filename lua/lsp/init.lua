@@ -10,6 +10,7 @@ local servers = {
   bashls = require("lsp.bashls"), -- /lua/lsp/bashls.lua
   vimls = require("lsp.vimls"), -- /lua/lsp/vimls.lua
   jsonls = require("lsp.jsonls"), -- /lua/lsp/jsonls.lua
+  rust_analyzer = require("lsp.rust") -- /lua/lsp/rust.lua
 }
 
 -- 自动安装 LanguageServers
