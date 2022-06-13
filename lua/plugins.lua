@@ -6,8 +6,8 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local paccker_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
   vim.notify("正在安装Pakcer.nvim，请稍后...")
-  paccker_bootstrap = fn.system({"git", "clone", "--depth", "1", -- "https://github.com/wbthomason/packer.nvim",
-    "https://gitcode.net/mirrors/wbthomason/packer.nvim", install_path})
+  paccker_bootstrap = fn.system({ "git", "clone", "--depth", "1", -- "https://github.com/wbthomason/packer.nvim",
+    "https://gitcode.net/mirrors/wbthomason/packer.nvim", install_path })
 
   -- https://github.com/wbthomason/packer.nvim/issues/750
   local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
@@ -62,6 +62,7 @@ packer.startup({
     use('hrsh7th/vim-vsnip')
     use('rafamadriz/friendly-snippets')
     use('machakann/vim-sandwich')
+    use(require('plugin-config.auto-save'))
 
     -- Git
     use(require('plugin-config.gitsigns'))
@@ -74,7 +75,7 @@ packer.startup({
     -- use("p00f/nvim-ts-rainbow")
 
     -- LSP
-    use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
+    use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
 
     -- Autocomplete
     use(require('plugin-config.nvim-cmp'))
