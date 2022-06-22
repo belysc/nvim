@@ -51,10 +51,8 @@ packer.startup({
     use(require('plugin-config.symbol-outline'))
     use("numToStr/FTerm.nvim")
     use('kevinhwang91/nvim-bqf')
-    -- use(require('plugin-config.indent-line'))
 
     -- Edit
-    use("github/copilot.vim")
     use("deris/vim-shot-f")
     use(require('plugin-config.nvim-autopairs'))
     use(require('plugin-config.comment'))
@@ -63,7 +61,6 @@ packer.startup({
     use('hrsh7th/vim-vsnip')
     use('rafamadriz/friendly-snippets')
     use('machakann/vim-sandwich')
-    -- use(require('plugin-config.auto-save'))
 
     -- Git
     use(require('plugin-config.gitsigns'))
