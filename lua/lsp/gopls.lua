@@ -1,6 +1,6 @@
 function OrgImports(wait_ms)
   local params = vim.lsp.util.make_range_params()
-  params.context = {only = {"source.organizeImports"}}
+  params.context = { only = { "source.organizeImports" } }
   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
   for _, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do
@@ -15,8 +15,8 @@ end
 
 local util = require "lspconfig/util"
 local opts = {
-  cmd = {"gopls", "serve"},
-  filetypes = {"go", "gomod"},
+  cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   single_file_support = true,
   settings = {
@@ -27,7 +27,7 @@ local opts = {
       staticcheck = true,
     },
   },
-  on_attach= function (client, bufnr)
+  on_attach = function(client, bufnr)
     require('lsp.utils').on_attach(client, bufnr)
     -- 自动执行goimports
     vim.cmd("autocmd BufWritePre *.go lua OrgImports(1000)")

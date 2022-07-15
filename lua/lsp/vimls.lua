@@ -1,7 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pylsp
 local opts = {
   cmd = { "vim-language-server", "--stdio" },
-  filetypes = {"vim"},
+  filetypes = { "vim" },
   init_options = {
     diagnostic = {
       enable = true

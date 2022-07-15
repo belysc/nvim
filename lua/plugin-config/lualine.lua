@@ -3,7 +3,7 @@ local M = {
 }
 
 function M.config()
-  require('lualine').setup{
+  require('lualine').setup {
     sections = {
       lualine_c = {
         {

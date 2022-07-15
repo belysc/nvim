@@ -85,7 +85,7 @@ map('n', '<F3>', ':NvimTreeToggle<CR>', opt)
 -- 列表快捷键
 pluginKeys.nvimTreeList = { -- 打开文件或文件夹
   {
-    key = {"<CR>", "o", "<2-LeftMouse>"},
+    key = { "<CR>", "o", "<2-LeftMouse>" },
     action = "edit"
   }, -- 分屏打开文件
   {
@@ -128,7 +128,7 @@ pluginKeys.nvimTreeList = { -- 打开文件或文件夹
   }, {
     key = "s",
     action = "system_open"
-  }}
+  } }
 
 -- bufferline
 -- Buffer nav
@@ -142,10 +142,10 @@ map('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', opt)
 map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opt)
 
 -- gitsigns
-pluginKeys.mapgit = function (mapbuf)
+pluginKeys.mapgit = function(mapbuf)
   -- Navigation
-  mapbuf('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr=true})
-  mapbuf('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true})
+  mapbuf('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
+  mapbuf('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
 
   -- Actions
   mapbuf('n', '<leader>hs', ':Gitsigns stage_hunk<CR>')
@@ -187,6 +187,14 @@ map("n", "<C-_>", "gcc", {
 map("v", "<C-_>", "gcc", {
   noremap = false
 })
+
+-- hop for easy motion
+map('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+map('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+map('n', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
+map('n', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
+map('n', '<leader><leader>j', ':HopWordAC<CR>', opt)
+map('n', '<leader><leader>k', ':HopWordBC<CR>', opt)
 
 -- Telescope
 map("n", "<leader>e", ":Telescope find_files<CR>", opt)
@@ -261,7 +269,7 @@ pluginKeys.cmp = function(cmp)
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
     ['<CR>'] = cmp.mapping.confirm({
-      select = true ,
+      select = true,
       behavior = cmp.ConfirmBehavior.Replace
     }),
     -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.

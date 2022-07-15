@@ -44,4 +44,3 @@ return {
     server:setup(opts)
   end,
 }
-

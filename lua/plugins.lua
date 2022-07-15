@@ -53,7 +53,6 @@ packer.startup({
     use('kevinhwang91/nvim-bqf')
 
     -- Edit
-    use("deris/vim-shot-f")
     use(require('plugin-config.nvim-autopairs'))
     use(require('plugin-config.comment'))
     use(require('plugin-config.spaceless'))
@@ -61,6 +60,7 @@ packer.startup({
     use('hrsh7th/vim-vsnip')
     use('rafamadriz/friendly-snippets')
     use('machakann/vim-sandwich')
+    use(require('plugin-config.hop'))
 
     -- Git
     use(require('plugin-config.gitsigns'))
