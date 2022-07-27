@@ -138,8 +138,8 @@ map("n", "<leader>w", ":BufferLineCycleNext<CR>", opt)
 map("n", "<leader>c", ":bd<CR>", opt)
 
 -- floating terminal
-map('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', opt)
-map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opt)
+map('n', '<A-d>', '<CMD>lua require("FTerm").toggle()<CR>', opt)
+map('t', '<A-d>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opt)
 
 -- gitsigns
 pluginKeys.mapgit = function(mapbuf)
