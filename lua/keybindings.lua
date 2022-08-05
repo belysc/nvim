@@ -1,6 +1,6 @@
--- setting leader key to ","
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+-- setting leader key to " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- 本地变量
 local map = vim.api.nvim_set_keymap
@@ -70,13 +70,7 @@ map("n", "<C-Up>", ":resize -2<CR>", opt)
 map("n", "s=", "<C-w>=", opt)
 
 --------------------------------------------------------------------
--- session 管理
-map("n", "<leader>so", ":OpenSession<Space>", opt)
-map("n", "<leader>ss", ":SaveSession<Space>", opt)
-map("n", "<leader>sd", ":DeleteSession<CR>", opt)
-map("n", "<leader>sc", "CloseSession<CR>", opt)
 
---------------------------------------------------------------------
 -- 插件快捷键
 local pluginKeys = {}
 
@@ -168,25 +162,11 @@ pluginKeys.mapgit = function(mapbuf)
 end
 
 
--- 代码注释插件
+-- 代码注释插件 Comment
 -- see ./lua/plugin-config/comment.lua
-pluginKeys.comment = {
-  toggler = {
-    line = "gcc",
-    block = "gbc"
-  },
-  opleader = {
-    line = "gc",
-    bock = "gb"
-  }
-}
 -- ctrl + /
-map("n", "<C-_>", "gcc", {
-  noremap = false
-})
-map("v", "<C-_>", "gcc", {
-  noremap = false
-})
+map("n", "<C-_>", "gcc", { noremap = false })
+map("v", "<C-_>", "gc", { noremap = false })
 
 -- hop for easy motion
 map('n', 'f',
@@ -238,7 +218,7 @@ pluginKeys.maplsp = function(mapbuf)
   -- rename
   mapbuf('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
   -- code action
-  mapbuf('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+  mapbuf('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
   -- go xx
   mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)

@@ -3,7 +3,7 @@ local M = {
 }
 
 function M.config()
-  require("Comment").setup(require("keybindings").comment)
+  require("Comment").setup()
 end
 
 return M
