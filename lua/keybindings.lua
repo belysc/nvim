@@ -40,11 +40,6 @@ map("v", "K", ":move '<-2<CR>gv-gv", opt)
 -- 在visual mode 里粘贴不要复制
 map("v", "p", '"_dP', opt)
 
--- 退出
-map("n", "q", ":q<CR>", opt)
-map("n", "qq", ":q!<CR>", opt)
-map("n", "Q", ":qa!<CR>", opt)
-
 ------------------------------------------------------------------
 -- windows 分屏快捷键
 map("n", "<leader>h", ":split<CR>", opt)
@@ -79,13 +74,18 @@ map('n', '<F3>', ':NvimTreeToggle<CR>', opt)
 -- 列表快捷键
 pluginKeys.nvimTreeList = { -- 打开文件或文件夹
   {
+    key = "?",
+    action = "toggle_help",
+  },
+  {
     key = { "<CR>", "o", "<2-LeftMouse>" },
     action = "edit"
   }, -- 分屏打开文件
   {
     key = "v",
     action = "vsplit"
-  }, {
+  },
+  {
     key = "h",
     action = "split"
   }, -- 显示隐藏文件
@@ -101,28 +101,36 @@ pluginKeys.nvimTreeList = { -- 打开文件或文件夹
   {
     key = "<F5>",
     action = "refresh"
-  }, {
+  },
+  {
     key = "a",
     action = "create"
-  }, {
+  },
+  {
     key = "d",
     action = "remove"
-  }, {
+  },
+  {
     key = "r",
     action = "rename"
-  }, {
+  },
+  {
     key = "x",
     action = "cut"
-  }, {
+  },
+  {
     key = "c",
     action = "copy"
-  }, {
+  },
+  {
     key = "p",
     action = "paste"
-  }, {
+  },
+  {
     key = "s",
     action = "system_open"
-  } }
+  }
+}
 
 -- bufferline
 -- Buffer nav
@@ -181,8 +189,7 @@ map('n', 't',
 map('n', 'T',
   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>"
   , {})
-map('n', '<leader>u', ':HopWordBC<CR>', opt)
-map('n', '<leader>d', ':HopWordAC<CR>', opt)
+map('n', '<leader>d', ':HopChar1<CR>', opt)
 
 -- Telescope
 map("n", "<leader>e", ":Telescope find_files<CR>", opt)
