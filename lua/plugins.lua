@@ -56,7 +56,6 @@ packer.startup({
     use(require('plugin-config.nvim-autopairs'))
     use(require('plugin-config.comment'))
     use(require('plugin-config.spaceless'))
-    use('hrsh7th/cmp-vsnip')
     use('hrsh7th/vim-vsnip')
     use('rafamadriz/friendly-snippets')
     use('machakann/vim-sandwich')
@@ -77,6 +76,7 @@ packer.startup({
 
     -- Autocomplete
     use(require('plugin-config.nvim-cmp'))
+    use('hrsh7th/cmp-vsnip')
 
     -------------------------------------------------------
 

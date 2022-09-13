@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- 本地变量
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 local opt = {
   noremap = true,
