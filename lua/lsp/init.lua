@@ -1,38 +1,58 @@
-local lsp_installer = require "nvim-lsp-installer"
-
--- 安装列表
--- https://github.com/williamboman/nvim-lsp-installer#available-lsps
--- { key: 语言 value: 配置文件 }
-local servers = {
-  sumneko_lua = require("lsp.lua"), -- /lua/lsp/lua.lua
-  gopls = require("lsp.gopls"), -- /lua/lsp/gopls.lua
-  pylsp = require("lsp.pylsp"), -- /lua/lsp/pylsp.lua
-  bashls = require("lsp.bashls"), -- /lua/lsp/bashls.lua
-  vimls = require("lsp.vimls"), -- /lua/lsp/vimls.lua
-  jsonls = require("lsp.jsonls"), -- /lua/lsp/jsonls.lua
-  rust_analyzer = require("lsp.rust") -- /lua/lsp/rust.lua
-}
-
--- 自动安装 LanguageServers
-for name, _ in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found then
-    if not server:is_installed() then
-      print("Installing " .. name)
-      server:install()
-    end
-  end
+local status, mason = pcall(require, "mason")
+if not status then
+  vim.notify("Plugin `mason.nvim` not found")
+  return
 end
 
+local mason_lspconfig
+status, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not status then
+  vim.notify("Plugin `mason-lspconfig` not found")
+  return
+end
+
+local lspconfig
+status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  vim.notify("Plugin `lspconfig` not found")
+  return
+end
+
+mason.setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    }
+  },
+  install_root_dir = vim.env.VIM .. "/abc/mason",
+})
+
+-- Install List
+-- https://github.com/williamboman/nvim-lsp-installer#available-lsps
+-- { key: lsp_name, value: lsp_config }
+local servers = {
+  gopls = require("lsp.gopls"),
+  pylsp = require("lsp.pylsp"),
+  rust_analyzer = require("lsp.rust"),
+  sumneko_lua = require("lsp.lua"),
+  bashls = require("lsp.bashls"),
+  vimls = require("lsp.vimls"),
+  jsonls = require("lsp.jsonls"),
+}
+
+local ensure_installed = { type = "list" }
+for name, _ in pairs(servers) do
+  table.insert(ensure_installed, name)
+end
+
+mason_lspconfig.setup({
+  ensure_installed = ensure_installed,
+  automatic_installation = true,
+})
+
 -- 加载配置
-lsp_installer.on_server_ready(function(server)
-  local config = servers[server.name]
-  if config == nil then
-    return
-  end
-  if config.on_setup then
-    config.on_setup(server)
-  else
-    server:setup({})
-  end
-end)
+for name, config in pairs(servers) do
+  lspconfig[name].setup(config)
+end

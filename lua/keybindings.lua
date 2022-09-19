@@ -74,10 +74,6 @@ map('n', '<F3>', ':NvimTreeToggle<CR>', opt)
 -- 列表快捷键
 pluginKeys.nvimTreeList = { -- 打开文件或文件夹
   {
-    key = "?",
-    action = "toggle_help",
-  },
-  {
     key = { "<CR>", "o", "<2-LeftMouse>" },
     action = "edit"
   }, -- 分屏打开文件

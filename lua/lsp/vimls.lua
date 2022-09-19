@@ -24,8 +24,4 @@ local opts = {
   on_attach = require('lsp.utils').on_attach
 }
 
-return {
-  on_setup = function(server)
-    server:setup(opts)
-  end,
-}
+return opts

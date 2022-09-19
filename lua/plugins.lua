@@ -72,7 +72,9 @@ packer.startup({
     -- use("p00f/nvim-ts-rainbow")
 
     -- LSP
-    use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
+    use { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" }
+    use { 'neovim/nvim-lspconfig' }
+    use { 'nanotee/sqls.nvim' }
 
     -- Autocomplete
     use(require('plugin-config.nvim-cmp'))
