@@ -48,7 +48,6 @@ packer.startup({
     use(require('plugin-config.nvim-tree'))
     use(require('plugin-config.bufferline'))
     use(require('plugin-config.lualine'))
-    use(require('plugin-config.symbol-outline'))
     use("numToStr/FTerm.nvim")
     use('kevinhwang91/nvim-bqf')
 

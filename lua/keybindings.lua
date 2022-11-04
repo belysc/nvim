@@ -212,9 +212,6 @@ pluginKeys.telescopeList = {
   }
 }
 
--- symbol outline
-map("n", "<F4>", ":SymbolsOutline<CR>", opt)
-
 -- lsp
 -- lsp 回调函数快捷键设置
 pluginKeys.maplsp = function(mapbuf)
