@@ -38,10 +38,8 @@ packer.startup({
     use('kyazdani42/nvim-web-devicons')
 
     -- Colorscheme
-    use('folke/tokyonight.nvim')
     use('ful1e5/onedark.nvim')
     use('tanvirtin/monokai.nvim')
-    use('overcache/NeoSolarized')
     use('sainnhe/everforest')
 
     -- UI
