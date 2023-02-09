@@ -26,7 +26,8 @@ mason.setup({
       package_uninstalled = "✗"
     }
   },
-  install_root_dir = vim.env.VIM .. "/abc/mason",
+  -- ~/.local/share/nvim/mason
+  install_root_dir = vim.fn.stdpath("data") .. "/mason",
 })
 
 -- Install List
@@ -36,7 +37,7 @@ local servers = {
   gopls = require("lsp.gopls"),
   pylsp = require("lsp.pylsp"),
   rust_analyzer = require("lsp.rust"),
-  sumneko_lua = require("lsp.lua"),
+  lua_ls = require("lsp.lua"),
   bashls = require("lsp.bashls"),
   vimls = require("lsp.vimls"),
   jsonls = require("lsp.jsonls"),

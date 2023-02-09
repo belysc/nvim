@@ -41,3 +41,6 @@ luac.out
 
 # Packer plugin compile file
 plugin/*
+
+# Lazy plugin lock file
+lazy-lock.json

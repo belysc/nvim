@@ -11,7 +11,6 @@ local opts = {
     provideFormatter = true
   },
   capabilities = capabilities,
-
   on_attach = require('lsp.utils').on_attach
 }
 

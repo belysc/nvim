@@ -1,7 +1,7 @@
 local M = {
   -- 'nvim-treesitter/nvim-treesitter',
   'kevinhwang91/nvim-treesitter',
-  run = ':TSUpdate',
+  build = ':TSUpdate',
 }
 
 function M.config()
@@ -24,7 +24,7 @@ function M.config()
     -- },
     -- 启用增量选择
     incremental_selection = {
-      enable = true,
+      enable = false,
       keymaps = {
         init_selection = '<CR>',
         node_incremental = '<CR>',
@@ -34,7 +34,7 @@ function M.config()
     },
     -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
     indent = {
-      enable = true
+      enable = false
     }
   }
   -- 开启 Folding

@@ -20,7 +20,6 @@ local opts = {
     },
     vimruntime = ""
   },
-
   on_attach = require('lsp.utils').on_attach
 }
 

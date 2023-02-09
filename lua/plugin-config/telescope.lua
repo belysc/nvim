@@ -1,6 +1,6 @@
 local M = {
   'nvim-telescope/telescope.nvim',
-  requires = {
+  dependencies = {
     'nvim-telescope/telescope-fzf-native.nvim',
   }
 }

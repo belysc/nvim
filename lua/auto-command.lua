@@ -44,7 +44,10 @@ api.nvim_create_autocmd(
 )
 api.nvim_create_autocmd(
   "FileType",
-  { pattern = { "ruby", "javascript", "html", "css", "xml", "lua" }, command = [[set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai]] }
+  {
+    pattern = { "ruby", "javascript", "html", "css", "xml", "lua" },
+    command = [[set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai]]
+  }
 )
 api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
@@ -56,13 +59,17 @@ api.nvim_create_autocmd(
 )
 api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
-  { pattern = { "*.vue" }, command = [[setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai]] }
+  {
+    pattern = { "*.vue" },
+    command = [[setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai]]
+  }
 )
 
 -- WSL yank support
 api.nvim_create_autocmd(
   "TextYankPost",
-  { command = [[
+  {
+    command = [[
     let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
     if executable(s:clip)
       augroup WSLYank
@@ -70,5 +77,6 @@ api.nvim_create_autocmd(
         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
       augroup END
     endif
-  ]] }
+  ]]
+  }
 )

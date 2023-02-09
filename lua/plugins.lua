@@ -1,111 +1,72 @@
 -- 插件安装目录
--- ~/.local/share/nvim/site/pack/packer/
--- 自动安装 Packer.nvim
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local paccker_bootstrap
-if fn.empty(fn.glob(install_path)) > 0 then
-  vim.notify("正在安装Pakcer.nvim，请稍后...")
-  paccker_bootstrap = fn.system({ "git", "clone", "--depth", "1", -- "https://github.com/wbthomason/packer.nvim",
-    "https://gitcode.net/mirrors/wbthomason/packer.nvim", install_path })
-
-  -- https://github.com/wbthomason/packer.nvim/issues/750
-  local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
-  if not string.find(vim.o.runtimepath, rtp_addition) then
-    vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
-  end
-  vim.notify("Pakcer.nvim 安装完毕")
+-- ~/.local/share/nvim/lazy/lazy.nvim
+-- 自动安装 Lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  vim.notify("没有安装 packer.nvim")
-  return
-end
+require("lazy").setup({
+  -- Lazy can manage itself
+  'folke/lazy.nvim',
 
-packer.startup({
-  function(use)
-    -- impatient.nvim has to be loaded before anything else,
-    -- it's also required in init.lua
-    use('lewis6991/impatient.nvim')
+  -- Dependency required by other plugins
+  'nvim-lua/plenary.nvim',
+  'kyazdani42/nvim-web-devicons',
 
-    -- Packer can manage itself
-    use('wbthomason/packer.nvim')
+  -- Colorscheme
+  'navarasu/onedark.nvim',
+  'sainnhe/everforest',
+  'ellisonleao/gruvbox.nvim',
 
-    -- Dependency required by other plugins
-    use('nvim-lua/plenary.nvim')
-    use('kyazdani42/nvim-web-devicons')
+  -- UI
+  require('plugin-config.nvim-tree'),
+  require('plugin-config.bufferline'),
+  require('plugin-config.lualine'),
+  "numToStr/FTerm.nvim",
+  'kevinhwang91/nvim-bqf',
 
-    -- Colorscheme
-    use('ful1e5/onedark.nvim')
-    use('tanvirtin/monokai.nvim')
-    use('sainnhe/everforest')
+  -- Edit
+  require('plugin-config.nvim-autopairs'),
+  require('plugin-config.comment'),
+  require('plugin-config.spaceless'),
+  'hrsh7th/vim-vsnip',
+  'rafamadriz/friendly-snippets',
+  'machakann/vim-sandwich',
+  require('plugin-config.hop'),
 
-    -- UI
-    use(require('plugin-config.nvim-tree'))
-    use(require('plugin-config.bufferline'))
-    use(require('plugin-config.lualine'))
-    use("numToStr/FTerm.nvim")
-    use('kevinhwang91/nvim-bqf')
+  -- Git
+  require('plugin-config.gitsigns'),
 
-    -- Edit
-    use(require('plugin-config.nvim-autopairs'))
-    use(require('plugin-config.comment'))
-    use(require('plugin-config.spaceless'))
-    use('hrsh7th/vim-vsnip')
-    use('rafamadriz/friendly-snippets')
-    use('machakann/vim-sandwich')
-    use(require('plugin-config.hop'))
+  -- Fuzzy Search
+  require('plugin-config.telescope'),
 
-    -- Git
-    use(require('plugin-config.gitsigns'))
+  -- treesitter
+  require('plugin-config.nvim-treesitter'),
+  -- use("p00f/nvim-ts-rainbow")
 
-    -- Fuzzy Search
-    use(require('plugin-config.telescope'))
+  -- LSP
+  { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+  { 'neovim/nvim-lspconfig' },
+  { 'nanotee/sqls.nvim' },
 
-    -- treesitter
-    use(require('plugin-config.nvim-treesitter'))
-    -- use("p00f/nvim-ts-rainbow")
-
-    -- LSP
-    use { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" }
-    use { 'neovim/nvim-lspconfig' }
-    use { 'nanotee/sqls.nvim' }
-
-    -- Autocomplete
-    use(require('plugin-config.nvim-cmp'))
-    use('hrsh7th/cmp-vsnip')
-
-    -------------------------------------------------------
-
-    if paccker_bootstrap then
-      packer.sync()
-    end
-  end,
-  config = {
-    -- 最大并发数
-    max_jobs = 16,
-    -- 自定义源
-    git = {
-      -- default_url_format = "https://hub.fastgit.xyz/%s",
-      -- default_url_format = "https://mirror.ghproxy.com/https://github.com/%s",
-      -- default_url_format = "https://gitcode.net/mirrors/%s",
-      -- default_url_format = "https://gitclone.com/github.com/%s",
-    }
-    -- display = {
-    -- 使用浮动窗口显示
-    --   open_fn = function()
-    --     return require("packer.util").float({ border = "single" })
-    --   end,
-    -- },
-  }
+  -- Autocomplete
+  require('plugin-config.nvim-cmp'),
+  'hrsh7th/cmp-vsnip',
 })
 
 -- 每次保存 plugins.lua 自动安装插件
 pcall(vim.cmd, [[
-augroup packer_user_config
+augroup lazy_user_config
 autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerSync
+autocmd BufWritePost plugins.lua source <afile> | Lazy sync
 augroup end
 ]])
