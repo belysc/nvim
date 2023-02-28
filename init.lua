@@ -1,9 +1,3 @@
--- impatient has to be loaded before anything else
-local present, impatient = pcall(require, 'impatient')
-if present then
-  impatient.enable_profile()
-end
-
 -- 基础配置
 require('basic')
 
@@ -20,5 +14,4 @@ require('lsp')
 require("auto-command")
 
 -- 皮肤设置
-require("colorscheme")
 require("colorscheme")
