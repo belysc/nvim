@@ -33,6 +33,7 @@ require("lazy").setup({
   require('plugin-config.lualine'),
   "numToStr/FTerm.nvim",
   'kevinhwang91/nvim-bqf',
+  require("plugin-config/sentiment"),
 
   -- Edit
   require('plugin-config.nvim-autopairs'),
