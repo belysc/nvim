@@ -43,6 +43,7 @@ require("lazy").setup({
   'rafamadriz/friendly-snippets',
   'machakann/vim-sandwich',
   require('plugin-config.hop'),
+  'Exafunction/codeium.vim',
 
   -- Git
   require('plugin-config.gitsigns'),
