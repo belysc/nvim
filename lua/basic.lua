@@ -95,18 +95,6 @@ vim.opt.foldenable = true
 -- marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
--- Set clipboard to use win32yank
-vim.cmd [[
-let g:clipboard = {
-  \   'name': 'win32yank-wsl',
-  \   'copy': {
-  \      '+': 'win32yank -i --crlf',
-  \      '*': 'win32yank -i --crlf',
-  \    },
-  \   'paste': {
-  \      '+': 'win32yank -o --lf',
-  \      '*': 'win32yank -o --lf',
-  \   },
-  \   'cache_enabled': 0,
-  \ }
-]]
+
+-- Set clipboard
+vim.clipboard = "unnamedplus"
