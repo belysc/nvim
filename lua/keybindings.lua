@@ -19,15 +19,6 @@ local opt = {
 --   command_mode = "c",
 
 ------------------------------------------------------------------
--- magic search
-map("n", "/", "/\\v", {
-  noremap = true,
-  silent = false
-})
-map("v", "/", "/\\v", {
-  noremap = true,
-  silent = false
-})
 -- Clean search (highlight)
 map("n", "<leader><space>", ":noh<CR>", opt)
 -- visual模式下缩进代码
@@ -116,45 +107,19 @@ end
 map("n", "<C-_>", "gcc", { noremap = false })
 map("v", "<C-_>", "gc", { noremap = false })
 
--- hop for easy motion
-map('n', 'f',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
-  , {})
-map('n', 'F',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
-  , {})
-map('n', 't',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
-  , {})
-map('n', 'T',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>"
-  , {})
-map('n', '<leader>d', ':HopChar1<CR>', opt)
-
 -- Telescope
 map("n", "<leader>e", ":Telescope find_files<CR>", opt)
 map("n", "<leader>f", ":Telescope live_grep<CR>", opt)
 map("n", "<leader>b", ":Telescope buffers<CR>", opt)
 map("n", "<leader>s", ":Telescope lsp_document_symbols<CR>", opt)
--- Telescope 列表中 插入模式快捷键
-pluginKeys.telescopeList = {
-  i = {
-    -- 上下移动
-    ["<C-j>"] = "move_selection_next",
-    ["<C-k>"] = "move_selection_previous",
-    ["<C-n>"] = "move_selection_next",
-    ["<C-p>"] = "move_selection_previous",
-    -- 历史记录
-    ["<Down>"] = "cycle_history_next",
-    ["<Up>"] = "cycle_history_prev",
-    -- 关闭窗口
-    -- ["<esc>"] = actions.close,
-    ["<C-c>"] = "close",
-    -- 预览窗口上下滚动
-    ["<C-u>"] = "preview_scrolling_up",
-    ["<C-d>"] = "preview_scrolling_down"
-  }
-}
+
+-- Trouble
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
 
 -- lsp
 -- lsp 回调函数快捷键设置
@@ -205,7 +170,7 @@ pluginKeys.cmp = function(cmp)
       behavior = cmp.ConfirmBehavior.Replace
     }),
     -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs( -4), { 'i', 'c' }),
+    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
   }
 end

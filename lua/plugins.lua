@@ -38,12 +38,13 @@ require("lazy").setup({
   -- Edit
   require('plugin-config.nvim-autopairs'),
   require('plugin-config.comment'),
-  require('plugin-config.spaceless'),
+  require('plugin-config.flash'),
+  require('plugin-config.trouble'),
+  require('plugin-config.marks'),
   'hrsh7th/vim-vsnip',
   'rafamadriz/friendly-snippets',
-  'machakann/vim-sandwich',
-  require('plugin-config.hop'),
   'Exafunction/codeium.vim',
+  'machakann/vim-sandwich',
 
   -- Git
   require('plugin-config.gitsigns'),
@@ -58,17 +59,9 @@ require("lazy").setup({
   -- LSP
   { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
   { 'neovim/nvim-lspconfig' },
-  { 'nanotee/sqls.nvim' },
 
   -- Autocomplete
   require('plugin-config.nvim-cmp'),
+  require("plugin-config.which-key"),
   'hrsh7th/cmp-vsnip',
 })
-
--- 每次保存 plugins.lua 自动安装插件
-pcall(vim.cmd, [[
-augroup lazy_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | Lazy sync
-augroup end
-]])

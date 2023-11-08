@@ -1,6 +1,5 @@
 local M = {
-  -- 'nvim-treesitter/nvim-treesitter',
-  'kevinhwang91/nvim-treesitter',
+  'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
 }
 
