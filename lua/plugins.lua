@@ -26,6 +26,7 @@ require("lazy").setup({
   'navarasu/onedark.nvim',
   'sainnhe/everforest',
   'ellisonleao/gruvbox.nvim',
+  'folke/tokyonight.nvim',
 
   -- UI
   require('plugin-config.nvim-tree'),
