@@ -5,7 +5,17 @@ local opts = {
   filetypes = { "python" },
   root_dir = util.root_pattern(".git"),
   single_file_support = true,
-  on_attach = require('lsp.utils').on_attach
+  on_attach = require('lsp.utils').on_attach,
+  settings = {
+    pylsp = {
+      plugins = {
+        ruff = {
+          enabled = true,
+          lineLength = 120
+        },
+      }
+    }
+  }
 }
 
 return opts
