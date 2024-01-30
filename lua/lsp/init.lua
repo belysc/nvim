@@ -39,7 +39,6 @@ local servers = {
   rust_analyzer = require("lsp.rust"),
   lua_ls = require("lsp.lua"),
   bashls = require("lsp.bashls"),
-  vimls = require("lsp.vimls"),
   jsonls = require("lsp.jsonls"),
 }
 

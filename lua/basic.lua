@@ -95,6 +95,3 @@ vim.opt.foldenable = true
 -- marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
-
--- Set clipboard
-vim.clipboard = "unnamedplus"
