@@ -13,7 +13,7 @@ function M.config()
   end
 
   local actions = require("telescope.actions")
-  local trouble = require("trouble.providers.telescope")
+  local trouble = require("trouble.sources.telescope")
 
   telescope.setup({
     defaults = {
@@ -38,11 +38,11 @@ function M.config()
           ["<C-u>"] = "preview_scrolling_up",
           ["<C-d>"] = "preview_scrolling_down",
           -- Trouble
-          ["<c-t>"] = trouble.open_with_trouble,
+          ["<c-t>"] = trouble.open,
         },
         n = {
           -- Trouble
-          ["<c-t>"] = trouble.open_with_trouble,
+          ["<c-t>"] = trouble.open,
         }
       },
     },

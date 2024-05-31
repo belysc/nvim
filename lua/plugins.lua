@@ -20,7 +20,7 @@ require("lazy").setup({
 
   -- Dependency required by other plugins
   'nvim-lua/plenary.nvim',
-  'kyazdani42/nvim-web-devicons',
+  'nvim-tree/nvim-web-devicons',
 
   -- Colorscheme
   'navarasu/onedark.nvim',
