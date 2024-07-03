@@ -76,28 +76,42 @@ map('t', '<A-d>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opt)
 
 -- gitsigns
 pluginKeys.mapgit = function(mapbuf)
+  local gitsigns = require('gitsigns')
+
   -- Navigation
-  mapbuf('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-  mapbuf('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
+  mapbuf('n', ']c', function()
+    if vim.wo.diff then
+      vim.cmd.normal({ ']c', bang = true })
+    else
+      gitsigns.nav_hunk('next')
+    end
+  end)
+
+  mapbuf('n', '[c', function()
+    if vim.wo.diff then
+      vim.cmd.normal({ '[c', bang = true })
+    else
+      gitsigns.nav_hunk('prev')
+    end
+  end)
 
   -- Actions
-  mapbuf('n', '<leader>hs', ':Gitsigns stage_hunk<CR>')
-  mapbuf('v', '<leader>hs', ':Gitsigns stage_hunk<CR>')
-  mapbuf('n', '<leader>hr', ':Gitsigns reset_hunk<CR>')
-  mapbuf('v', '<leader>hr', ':Gitsigns reset_hunk<CR>')
-  mapbuf('n', '<leader>hS', '<cmd>Gitsigns stage_buffer<CR>')
-  mapbuf('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<CR>')
-  mapbuf('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<CR>')
-  mapbuf('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>')
-  mapbuf('n', '<leader>hb', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
-  mapbuf('n', '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
-  mapbuf('n', '<leader>hd', '<cmd>Gitsigns diffthis<CR>')
-  mapbuf('n', '<leader>hD', '<cmd>lua require"gitsigns".diffthis("~")<CR>')
-  mapbuf('n', '<leader>td', '<cmd>gitsigns toggle_deleted<cr>')
+  mapbuf('n', '<leader>hs', gitsigns.stage_hunk)
+  mapbuf('n', '<leader>hr', gitsigns.reset_hunk)
+  mapbuf('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+  mapbuf('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+  mapbuf('n', '<leader>hS', gitsigns.stage_buffer)
+  mapbuf('n', '<leader>hu', gitsigns.undo_stage_hunk)
+  mapbuf('n', '<leader>hR', gitsigns.reset_buffer)
+  mapbuf('n', '<leader>hp', gitsigns.preview_hunk)
+  mapbuf('n', '<leader>hb', function() gitsigns.blame_line { full = true } end)
+  mapbuf('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+  mapbuf('n', '<leader>hd', gitsigns.diffthis)
+  mapbuf('n', '<leader>hD', function() gitsigns.diffthis('~') end)
+  mapbuf('n', '<leader>td', gitsigns.toggle_deleted)
 
   -- Text object
-  mapbuf('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-  mapbuf('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 end
 
 
