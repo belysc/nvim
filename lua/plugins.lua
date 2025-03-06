@@ -2,7 +2,7 @@
 -- ~/.local/share/nvim/lazy/lazy.nvim
 -- 自动安装 Lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
+if not vim.fn.isdirectory(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -38,7 +38,6 @@ require("lazy").setup({
   require('plugin-config.comment'),
   require('plugin-config.flash'),
   require('plugin-config.trouble'),
-  require('plugin-config.marks'),
   'hrsh7th/vim-vsnip',
   'rafamadriz/friendly-snippets',
   'Exafunction/codeium.vim',
