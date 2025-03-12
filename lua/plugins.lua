@@ -58,7 +58,6 @@ require("lazy").setup({
   { 'neovim/nvim-lspconfig' },
 
   -- Autocomplete
-  require('plugin-config.nvim-cmp'),
+  require('plugin-config.blink-cmp'),
   require("plugin-config.which-key"),
-  'hrsh7th/cmp-vsnip',
 })
