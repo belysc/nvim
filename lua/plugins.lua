@@ -41,6 +41,7 @@ require("lazy").setup({
   'hrsh7th/vim-vsnip',
   'rafamadriz/friendly-snippets',
   require('plugin-config.windsurf'),
+  -- 'Exafunction/codeium.vim',
   'machakann/vim-sandwich',
 
   -- Git

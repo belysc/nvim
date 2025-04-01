@@ -12,3 +12,14 @@ require('lsp')
 
 -- autocmd
 require("auto-command")
+
+-- 设置nvim-tree
+require("nvim-tree").setup({
+  view = {
+    side = "left",  -- 设置文件树显示在左侧
+    width = 30,     -- 设置文件树的宽度
+  },
+  update_focused_file = {
+    enable = false,  -- 禁止自动更新焦点文件
+  },
+})
