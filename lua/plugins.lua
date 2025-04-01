@@ -40,7 +40,7 @@ require("lazy").setup({
   require('plugin-config.trouble'),
   'hrsh7th/vim-vsnip',
   'rafamadriz/friendly-snippets',
-  'Exafunction/codeium.vim',
+  -- 'Exafunction/codeium.vim',
   'machakann/vim-sandwich',
 
   -- Git
