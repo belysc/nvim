@@ -1,6 +1,11 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (OpenAI) when working with code in this repository.
+
+## 项目约定
+
+- 全仓库使用简体中文书写注释、文档与提交信息。
+- 这里的全局开发规范（语言、沟通、安全、验证）遵循 Codex 全局 `AGENTS.md`，不再在项目内重复。
 
 ## Commands
 
