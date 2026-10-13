@@ -1,19 +1,54 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
-  -- 禁用格式化功能，交给专门插件插件处理
-  -- client.resolved_capabilities.document_formatting = false
-  -- client.resolved_capabilities.document_range_formatting = false
-
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  local function map(mode, l, r, desc)
+    vim.keymap.set(mode, l, r, { buffer = bufnr, silent = true, desc = desc })
   end
 
-  -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-  -- 绑定快捷键
-  require("keybindings").maplsp(buf_set_keymap)
-  -- 保存时自动格式化
-  vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+  -- Rename symbol
+  map('n', '<leader>rn', vim.lsp.buf.rename, "Rename symbol")
+
+  -- Code action
+  map('n', '<leader>a', vim.lsp.buf.code_action, "Code action")
+
+  -- Go to definition
+  map('n', 'gd', function() require("snacks").picker.lsp_definitions() end, "Go to definition")
+
+  -- Show hover documentation
+  map('n', 'gh', vim.lsp.buf.hover, "Show documentation")
+
+  -- Go to declaration
+  map('n', 'gD', vim.lsp.buf.declaration, "Go to declaration")
+
+  -- Go to implementation
+  map('n', 'gi', function() require("snacks").picker.lsp_implementations() end, "Go to implementation")
+
+  -- Go to references
+  map('n', 'gr', function() require("snacks").picker.lsp_references() end, "Go to references")
+
+  -- Show diagnostics
+  map('n', 'go', vim.diagnostic.open_float, "Show diagnostics")
+
+  -- Go to previous diagnostic
+  map('n', 'gp', function() vim.diagnostic.jump({ count = -1 }) end, "Previous diagnostic")
+
+  -- Go to next diagnostic
+  map('n', 'gn', function() vim.diagnostic.jump({ count = 1 }) end, "Next diagnostic")
+
+  -- Format code
+  map('n', '<leader>=', function() vim.lsp.buf.format({ async = true }) end, "Format code")
+
+  -- Auto-format on save
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = bufnr,
+    callback = function()
+      local ft = vim.bo[bufnr].filetype
+      local ignore_filetypes = { "python", "lua", "javascript", "typescript" }
+      if not vim.tbl_contains(ignore_filetypes, ft) then
+        vim.lsp.buf.format()
+      end
+    end,
+  })
 end
 
 return M

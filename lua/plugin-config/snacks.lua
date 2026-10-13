@@ -1,0 +1,89 @@
+return {
+  {
+    "folke/snacks.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<F3>", function() Snacks.picker.explorer() end, desc = "Toggle file explorer" },
+      { "<A-d>", function() Snacks.terminal.toggle() end, desc = "Toggle floating terminal", mode = { "n", "t" } },
+      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+      { "<leader>e", function() Snacks.picker.files() end, desc = "Find files" },
+      { "<leader>f", function() Snacks.picker.grep() end, desc = "Grep text" },
+      { "<leader>b", function() Snacks.picker.buffers() end, desc = "Find buffers" },
+      { "<leader>s", function() Snacks.picker.lsp_symbols() end, desc = "Find document symbols" },
+      { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Search diagnostics" },
+      { "<leader>qf", function() Snacks.picker.qflist() end, desc = "Quickfix list (Snacks)" },
+    },
+    opts = {
+      lazygit = { enabled = true },
+      terminal = {
+        enabled = true,
+        win = {
+          position = "float",
+          backdrop = 60, -- Background dimming (0-100)
+          width = 0.8,   -- 80% of screen width
+          height = 0.8,  -- 80% of screen height
+          border = "rounded",
+          wo = {
+            winblend = 15, -- Window transparency (0-100)
+          },
+        },
+      },
+      bigfile = { enabled = true },
+      notifier = {
+        enabled = true,
+        timeout = 3000, -- Default timeout in ms
+      },
+      input = { enabled = true },
+      picker = {
+        enabled = true,
+        ui_select = true, -- replace vim.ui.select
+        sources = {
+          explorer = {
+            hidden = true,     -- Show hidden files
+            ignored = true,    -- Show ignored files
+            diagnostics = false, -- Hide diagnostic icons
+            git_status = true,
+            jump = { close = true }, -- Auto close after picking a file
+            preview = false,   -- Disable preview
+            layout = { preset = "sidebar", position = "left" },
+            win = {
+              list = {
+                keys = {
+                  ["h"] = "edit_split",
+                  ["l"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
+                }
+              }
+            },
+          },
+        },
+        win = {
+          input = {
+            keys = {
+              ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+              ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+              ["<a-q>"] = { "qflist", mode = { "i", "n" } },
+              ["Q"] = { "qflist", mode = { "n" } },
+            },
+          },
+          list = {
+            keys = {
+              ["v"] = "edit_vsplit",
+            },
+          },
+        },
+      },
+      select = { enabled = true },
+      dashboard = {
+        enabled = true,
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "recent_files", indent = 2, padding = 1 },
+          { section = "startup" },
+        },
+      },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = true },
+    },
+  },
+}
