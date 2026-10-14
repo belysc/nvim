@@ -145,3 +145,18 @@ api.nvim_create_autocmd('FileType', {
   end,
   desc = 'Enable text auto-wrapping for Markdown files'
 })
+
+
+-- 7. Treesitter 高亮保险：跳转/切换 buffer 时若高亮未启动则自动补上
+local ts_hl_group = api.nvim_create_augroup('TreesitterHighlight', { clear = true })
+
+api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+  group = ts_hl_group,
+  pattern = '*',
+  callback = function()
+    if vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] == nil then
+      pcall(vim.treesitter.start)
+    end
+  end,
+  desc = 'Ensure treesitter highlight is active'
+})

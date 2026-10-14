@@ -56,6 +56,7 @@ local server_configs = {
   lua_ls = require("lsp.lua"),       -- Lua language server
   bashls = require("lsp.bashls"),    -- Bash language server
   jsonls = require("lsp.jsonls"),    -- JSON language server
+  ts_ls = require("lsp.ts_ls"),      -- TypeScript/JavaScript 语言服务器
   -- buf_ls = require("lsp.bufls"),    -- Protocol Buffers language server (commented out)
 }
 

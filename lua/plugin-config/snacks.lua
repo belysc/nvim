@@ -12,6 +12,7 @@ return {
       { "<leader>s", function() Snacks.picker.lsp_symbols() end, desc = "Find document symbols" },
       { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Search diagnostics" },
       { "<leader>qf", function() Snacks.picker.qflist() end, desc = "Quickfix list (Snacks)" },
+      { "<leader>hb", function() Snacks.picker.git_log_line() end, mode = { "n", "v" }, desc = "选中行提交历史" },
     },
     opts = {
       lazygit = { enabled = true },
