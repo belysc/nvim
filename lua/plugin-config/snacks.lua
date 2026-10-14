@@ -4,7 +4,15 @@ return {
     event = "VeryLazy",
     keys = {
       { "<F2>", function() Snacks.picker.explorer() end, desc = "Toggle file explorer" },
-      { "<F4>", function() Snacks.explorer.reveal() end, desc = "在文件树中定位当前文件" },
+      -- 开关语义：文件树已打开则关闭，未打开则定位当前文件
+      { "<F4>", function()
+        local explorer = Snacks.picker.get({ source = "explorer" })[1]
+        if explorer then
+          explorer:close()
+        else
+          Snacks.explorer.reveal()
+        end
+      end, desc = "文件树定位当前文件（开关）" },
       { "<A-d>", function() Snacks.terminal.toggle() end, desc = "Toggle floating terminal", mode = { "n", "t" } },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
       { "<leader>e", function() Snacks.picker.files() end, desc = "Find files" },
