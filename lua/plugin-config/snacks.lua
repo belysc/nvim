@@ -3,7 +3,8 @@ return {
     "folke/snacks.nvim",
     event = "VeryLazy",
     keys = {
-      { "<F3>", function() Snacks.picker.explorer() end, desc = "Toggle file explorer" },
+      { "<F2>", function() Snacks.picker.explorer() end, desc = "Toggle file explorer" },
+      { "<F4>", function() Snacks.explorer.reveal() end, desc = "在文件树中定位当前文件" },
       { "<A-d>", function() Snacks.terminal.toggle() end, desc = "Toggle floating terminal", mode = { "n", "t" } },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
       { "<leader>e", function() Snacks.picker.files() end, desc = "Find files" },
